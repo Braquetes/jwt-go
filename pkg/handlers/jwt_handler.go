@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"strings"
 
 	"github.com/braquetes/jwt-go/pkg/domain"
@@ -35,7 +34,6 @@ func Generar(c *fiber.Ctx) error {
 func Verificar(c *fiber.Ctx) error {
 	authHeader := c.Get("Authorization")
 	tokenString := strings.Split(authHeader, " ")[2]
-	fmt.Println(tokenString)
 	token, err := middlewares.ValidateToken(tokenString)
 	if err != nil {
 		return c.Status(404).JSON(&fiber.Map{
